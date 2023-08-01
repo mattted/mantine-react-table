@@ -88,6 +88,7 @@ export const MRT_ShowHideColumnsMenu = <
             disabled={!getIsSomeColumnsVisible()}
             onClick={hideAllColumns}
             variant="subtle"
+            size="xs"
           >
             {localization.hideAll}
           </Button>
@@ -100,6 +101,7 @@ export const MRT_ShowHideColumnsMenu = <
               )
             }
             variant="subtle"
+            size="xs"
           >
             {localization.resetOrder}
           </Button>
@@ -109,6 +111,7 @@ export const MRT_ShowHideColumnsMenu = <
             disabled={!getIsSomeColumnsPinned()}
             onClick={() => table.resetColumnPinning(true)}
             variant="subtle"
+            size="xs"
           >
             {localization.unpinAll}
           </Button>
@@ -118,6 +121,7 @@ export const MRT_ShowHideColumnsMenu = <
             disabled={getIsAllColumnsVisible()}
             onClick={() => toggleAllColumnsVisible(true)}
             variant="subtle"
+            size="xs"
           >
             {localization.showAll}
           </Button>

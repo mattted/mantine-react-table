@@ -139,6 +139,7 @@ export const MRT_ShowHideColumnsMenuItems = <
               label={localization.toggleVisibility}
             >
               <Switch
+                size="xs"
                 checked={switchChecked}
                 disabled={(isSubMenu && switchChecked) || !column.getCanHide()}
                 label={columnDef.header}
@@ -149,7 +150,9 @@ export const MRT_ShowHideColumnsMenuItems = <
               />
             </Tooltip>
           ) : (
-            <Text sx={{ alignSelf: 'center' }}>{columnDef.header}</Text>
+            <Text sx={{ alignSelf: 'center', fontSize: '11px' }}>
+              {columnDef.header}
+            </Text>
           )}
         </Box>
       </Menu.Item>

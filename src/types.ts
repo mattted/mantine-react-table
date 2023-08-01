@@ -86,6 +86,7 @@ export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
 export type MRT_PaginationProps = Partial<PaginationProps> & {
   rowsPerPageOptions?: string[];
   showRowsPerPage?: boolean;
+  selectSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 };
 
 export type MRT_DensityState = 'xs' | 'md' | 'xl';

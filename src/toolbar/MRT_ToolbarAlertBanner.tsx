@@ -1,5 +1,14 @@
 import { Fragment } from 'react';
-import { ActionIcon, Alert, Badge, Box, Collapse, Flex } from '@mantine/core';
+import {
+  ActionIcon,
+  Alert,
+  Badge,
+  Box,
+  Collapse,
+  Divider,
+  Flex,
+  Space,
+} from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -51,21 +60,25 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
 
   const groupedByMessage =
     grouping.length > 0 ? (
-      <Flex>
+      <Flex sx={{ fontSize: '11px' }}>
         {localization.groupedBy}{' '}
         {grouping.map((columnId, index) => (
           <Fragment key={`${index}-${columnId}`}>
             {index > 0 ? localization.thenBy : ''}
             <Badge
+              size="xs"
               rightSection={
                 <ActionIcon
                   onClick={() => table.getColumn(columnId).toggleGrouping()}
                   size="xs"
+                  variant="transparent"
+                  color="#FFFFFF"
                 >
-                  <IconX />
+                  {' '}
+                  <IconX color="#FFFFFF" />
                 </ActionIcon>
               }
-              sx={{ marginLeft: '1ch' }}
+              sx={{ marginLeft: '1ch', fontSize: '11px' }}
               variant="filled"
               {...badgeProps}
             >
@@ -106,13 +119,13 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         })}
       >
         {alertProps?.title && <Box>{alertProps.title}</Box>}
-        <Flex sx={{ padding: '8px 16px' }}>
+        <Flex sx={{ padding: '8px 16px', fontSize: '11px' }}>
           {alertProps?.children}
           {alertProps?.children && (selectMessage || groupedByMessage) && (
-            <br />
+            <Divider orientation="vertical" />
           )}
           {selectMessage}
-          {selectMessage && groupedByMessage && <br />}
+          {selectMessage && groupedByMessage && <Space w="md" />}
           {groupedByMessage}
         </Flex>
       </Alert>

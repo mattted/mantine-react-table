@@ -78,6 +78,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     >
       {paginationProps?.showRowsPerPage !== false && (
         <Select
+          size={paginationProps?.selectSize || 'xs'}
           data={
             paginationProps?.rowsPerPageOptions ?? [
               '5',
@@ -94,13 +95,19 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           onChange={(value: string) => setPageSize(+value)}
           value={pageSize.toString()}
           sx={{
+            fontSize: '11px',
             '@media (min-width: 720px)': {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
             },
             '& .mantine-Select-input': {
-              width: '80px',
+              width: '70px',
+            },
+          }}
+          styles={{
+            label: {
+              fontSize: 11,
             },
           }}
           withinPortal

@@ -53,10 +53,10 @@ export const MRT_TableHeadCellResizeHandle = <
     >
       <Divider
         orientation="vertical"
-        size="lg"
+        size="xs"
         sx={{
-          borderRadius: '2px',
-          borderWidth: '4px',
+          borderRadius: '0px',
+          borderWidth: '1px',
           height: '24px',
           touchAction: 'none',
           transition: column.getIsResizing()

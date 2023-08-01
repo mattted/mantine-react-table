@@ -46,7 +46,7 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
               getPrimaryColor(theme),
               hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
             ),
-            border: `dashed ${getPrimaryColor(theme)} 2px`,
+            border: `dashed ${getPrimaryColor(theme)} 1px`,
             justifyContent: 'center',
             height: 'calc(100%)',
             position: 'absolute',
@@ -54,9 +54,9 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
             zIndex: 2,
           })}
           onDragEnter={handleDragEnter}
-          style={styles}
+          style={{ ...styles, fontSize: '11px' }}
         >
-          <Text>
+          <Text sx={{ fontSize: '11px', fontWeight: 'bold' }}>
             {localization.dropToGroupBy.replace(
               '{column}',
               draggingColumn?.columnDef?.header ?? '',

@@ -289,6 +289,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     onChange: setFilterValue,
     value: filterValue,
     variant: 'unstyled',
+    size: 'xs',
     sx: (theme: MantineTheme) => ({
       borderBottom: `2px solid ${
         theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]

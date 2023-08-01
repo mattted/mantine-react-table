@@ -247,7 +247,19 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
   );
 
   return (
-    <Menu closeOnItemClick withinPortal position="bottom-start">
+    <Menu
+      closeOnItemClick
+      withinPortal
+      position="bottom-start"
+      styles={{
+        item: {
+          fontSize: '11px',
+        },
+        label: {
+          fontSize: '11px',
+        },
+      }}
+    >
       <Tooltip
         withinPortal
         openDelay={1000}
