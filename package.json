@@ -1,35 +1,121 @@
 {
-  "name": "mantine-react-table-turbo",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
+  "version": "1.0.0",
+  "license": "MIT",
+  "name": "mantine-react-table",
+  "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
+  "author": "Kevin Vandy",
+  "keywords": [
+    "react-table",
+    "mantine",
+    "tanstack table",
+    "data table",
+    "data grid"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KevinVandy/mantine-react-table"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/kevinvandy"
+  },
+  "homepage": "https://www.mantine-react-table.com/",
+  "bugs": {
+    "url": "https://github.com/KevinVandy/mantine-react-table/issues"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/mantine-react-table.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "locales",
+    "src"
+  ],
+  "size-limit": [
+    {
+      "path": "dist/cjs/index.js",
+      "limit": "51 KB"
+    },
+    {
+      "path": "dist/esm/mantine-react-table.esm.js",
+      "limit": "50 KB"
+    }
+  ],
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
-    "build": "turbo run build --parallel",
-    "dev": "turbo run dev --parallel",
-    "docs:build": "turbo run lib:build && turbo run docs:build --no-cache --force",
-    "docs:build-local": "turbo run docs:build --no-cache --force",
-    "docs:dev": "turbo run docs:dev",
-    "docs:sitemap": "turbo run docs:sitemap",
-    "docs:start": "turbo run docs:start",
-    "lib:build": "cp README.md packages/mantine-react-table/README.md && turbo run lib:build",
-    "lib:build-locales": "turbo run lib:build-locales",
-    "lib:build-no-locales": "turbo run lib:build-no-locales",
-    "lib:dev": "turbo run lib:dev",
-    "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
-    "lint": "turbo run lint",
-    "start": "turbo run start --parallel",
-    "storybook": "turbo run storybook",
-    "storybook:build": "turbo run storybook:build",
-    "storybook:dev": "turbo run storybook"
+    "build": "pnpm lib:build",
+    "build-locales": "pnpm lib:build-locales",
+    "build-no-locales": "pnpm lib:build-no-locales",
+    "dev": "pnpm lib:dev",
+    "lib:build": "rm -rf dist && pnpm build-no-locales && pnpm build-locales",
+    "lib:build-locales": "rm -rf locales && node build-locales.mjs",
+    "lib:build-no-locales": "rm -rf dist && rollup -c rollup.config.mjs && size-limit",
+    "lib:dev": "rollup -c rollup.config.mjs --watch",
+    "lint": "eslint .",
+    "size": "size-limit",
+    "storybook": "pnpm storybook:dev",
+    "storybook:build": "storybook build",
+    "storybook:dev": "storybook dev -p 6007"
   },
   "devDependencies": {
-    "prettier": "^3.0.0",
-    "turbo": "^1.10.7"
+    "@babel/core": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@emotion/react": "^11.11.1",
+    "@faker-js/faker": "^8.0.2",
+    "@mantine/core": "^6.0.16",
+    "@mantine/dates": "^6.0.16",
+    "@mantine/hooks": "^6.0.16",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@size-limit/preset-small-lib": "^8.2.6",
+    "@storybook/addon-a11y": "^7.0.27",
+    "@storybook/addon-essentials": "^7.0.27",
+    "@storybook/addon-interactions": "^7.0.27",
+    "@storybook/addon-links": "^7.0.27",
+    "@storybook/addon-storysource": "^7.0.27",
+    "@storybook/blocks": "^7.0.27",
+    "@storybook/react": "^7.0.27",
+    "@storybook/react-vite": "^7.0.27",
+    "@storybook/testing-library": "^0.2.0",
+    "@tabler/icons-react": "2.25.0",
+    "@types/node": "^20.4.2",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "dayjs": "^1.11.9",
+    "eslint": "^8.45.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "rollup": "^3.26.2",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^5.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "size-limit": "^8.2.6",
+    "storybook": "^7.0.27",
+    "storybook-dark-mode": "^3.0.0",
+    "tslib": "^2.6.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.4"
   },
-  "engines": {
-    "node": ">=14.0.0"
+  "dependencies": {
+    "@tanstack/match-sorter-utils": "8.8.4",
+    "@tanstack/react-table": "8.9.3",
+    "@tanstack/react-virtual": "3.0.0-beta.54"
   },
-  "packageManager": "pnpm@8.5.1"
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@mantine/core": ">=6",
+    "@mantine/dates": ">=6",
+    "@mantine/hooks": ">=6",
+    "@tabler/icons-react": ">=2.23.0",
+    "react": ">=18.0",
+    "react-dom": ">=18.0"
+  }
 }
