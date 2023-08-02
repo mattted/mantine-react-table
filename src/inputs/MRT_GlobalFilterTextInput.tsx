@@ -101,7 +101,11 @@ export const MRT_GlobalFilterTextInput = <
               },
             }}
           >
-            <Tooltip withinPortal label={localization.clearSearch}>
+            <Tooltip
+              sx={{ fontSize: '11px' }}
+              withinPortal
+              label={localization.clearSearch}
+            >
               <IconX />
             </Tooltip>
           </ActionIcon>

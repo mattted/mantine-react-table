@@ -99,13 +99,14 @@ export const MRT_ShowHideColumnsMenuItems = <
             ? `2px dashed ${getPrimaryColor(theme)}`
             : 'none',
           paddingLeft: `${(column.depth + 0.5) * 2}rem`,
-          paddingTop: '6px',
-          paddingBottom: '6px',
+          paddingTop: '0px',
+          paddingBottom: '0px',
         })}
       >
         <Box
           sx={{
             display: 'flex',
+            alignItems: 'center',
             flexWrap: 'nowrap',
             gap: '8px',
           }}
@@ -146,6 +147,11 @@ export const MRT_ShowHideColumnsMenuItems = <
                 onChange={() => handleToggleColumnHidden(column)}
                 sx={{
                   cursor: 'pointer !important',
+                }}
+                styles={{
+                  label: {
+                    fontSize: '11px',
+                  },
                 }}
               />
             </Tooltip>

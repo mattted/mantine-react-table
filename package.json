@@ -49,7 +49,7 @@
     "build-locales": "pnpm lib:build-locales",
     "build-no-locales": "pnpm lib:build-no-locales",
     "dev": "pnpm lib:dev",
-    "lib:build": "rm -rf dist && pnpm build-no-locales && pnpm build-locales.mjs",
+    "lib:build": "rm -rf dist && pnpm build-no-locales && pnpm lib:build-locales",
     "lib:build-locales": "rm -rf locales && node build-locales.mjs",
     "lib:build-no-locales": "rm -rf dist && rollup -c rollup.config.mjs && size-limit",
     "lib:dev": "rollup -c rollup.config.mjs --watch",
