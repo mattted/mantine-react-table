@@ -95,7 +95,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           onChange={(value: string) => setPageSize(+value)}
           value={pageSize.toString()}
           sx={{
-            fontSize: '11px',
+            fontSize: '11px !important',
             '@media (min-width: 720px)': {
               display: 'flex',
               alignItems: 'center',
@@ -107,7 +107,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           }}
           styles={{
             label: {
-              fontSize: 11,
+              fontSize: '11px',
             },
           }}
           withinPortal

@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Box, LoadingOverlay } from '@mantine/core';
+import { Box, LoadingOverlay, ScrollArea } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
 import { MRT_EditRowModal } from '../modals';
 import { type MRT_TableInstance } from '../types';
@@ -63,43 +63,45 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
   const editModalOpen = editDisplayMode === 'modal' && editingRow;
 
   return (
-    <Box
-      {...tableContainerProps}
-      ref={(node: HTMLDivElement) => {
-        if (node) {
-          tableContainerRef.current = node;
-          if (tableContainerProps?.ref) {
-            //@ts-ignore
-            tableContainerProps.ref.current = node;
+    <ScrollArea h="100%" w="100%" scrollbarSize={6}>
+      <Box
+        {...tableContainerProps}
+        ref={(node: HTMLDivElement) => {
+          if (node) {
+            tableContainerRef.current = node;
+            if (tableContainerProps?.ref) {
+              //@ts-ignore
+              tableContainerProps.ref.current = node;
+            }
           }
-        }
-      }}
-      sx={(theme) => ({
-        maxWidth: '100%',
-        maxHeight: enableStickyHeader
-          ? `clamp(350px, calc(100vh - ${totalToolbarHeight}px), 9999px)`
-          : undefined,
-        overflow: 'auto',
-        position: 'relative',
-        ...(tableContainerProps?.sx instanceof Function
-          ? tableContainerProps.sx(theme)
-          : (tableContainerProps?.sx as any)),
-      })}
-      style={{
-        maxHeight: isFullScreen
-          ? `calc(100vh - ${totalToolbarHeight}px)`
-          : undefined,
-        ...tableContainerProps?.style,
-      }}
-    >
-      <LoadingOverlay
-        visible={isLoading || showLoadingOverlay}
-        {...loadingOverlayProps}
-      />
-      <MRT_Table table={table} />
-      {(createModalOpen || editModalOpen) && (
-        <MRT_EditRowModal open table={table} />
-      )}
-    </Box>
+        }}
+        sx={(theme) => ({
+          maxWidth: '100%',
+          maxHeight: enableStickyHeader
+            ? `clamp(350px, calc(100vh - ${totalToolbarHeight}px), 9999px)`
+            : undefined,
+          overflow: 'visible',
+          position: 'relative',
+          ...(tableContainerProps?.sx instanceof Function
+            ? tableContainerProps.sx(theme)
+            : (tableContainerProps?.sx as any)),
+        })}
+        style={{
+          maxHeight: isFullScreen
+            ? `calc(100vh - ${totalToolbarHeight}px)`
+            : undefined,
+          ...tableContainerProps?.style,
+        }}
+      >
+        <LoadingOverlay
+          visible={isLoading || showLoadingOverlay}
+          {...loadingOverlayProps}
+        />
+        <MRT_Table table={table} />
+        {(createModalOpen || editModalOpen) && (
+          <MRT_EditRowModal open table={table} />
+        )}
+      </Box>
+    </ScrollArea>
   );
 };
